@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock Paper Sciccors</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function random(max){
+			return Math.floor(Math.random()* max);
+		}
+		function computerPlay(){
+			let descission = random(3);
+			switch(descission){
+				case 0:
+					return "Rock";
+					break;
+				case 1:
+					return "Scissor";
+					break;
+				case 2:
+					return "Paper";
+					break;
+				// in case something goas wrong
+				default:
+					return "Rock";
+			}
+
+		}
+		console.log(computerPlay());
+	</script>
+</body>
+</html>
