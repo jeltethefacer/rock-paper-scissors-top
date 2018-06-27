@@ -26,7 +26,31 @@
 			}
 
 		}
-		console.log(computerPlay());
+		function playRound(playerSelection, computerSelection){
+			playerSelectionUC = playerSelection.toLowerCase()
+			computerSelectionUC = computerSelection.toLowerCase()
+			if(playerSelectionUC == "rock" && computerSelectionUC == "rock" || 
+				playerSelectionUC == "paper" && computerSelectionUC == "paper" ||
+				 playerSelectionUC == "scissor" && computerSelectionUC == "scissor")
+			{
+				return "It's a draw, the computer and you both had " + playerSelection + ".";
+			}
+			else if(computerSelectionUC == "rock" && playerSelectionUC == "paper" || 
+				computerSelectionUC == "paper" && playerSelectionUC == "scissor" || 
+				computerSelectionUC == "scissor" && playerSelectionUC == "rock")
+			{
+				return  "You win, " + playerSelection + " beats " + computerSelection + ".";
+			}
+			else if(computerSelectionUC == "rock" && playerSelectionUC == "scissor" || 
+				computerSelectionUC == "paper" && playerSelectionUC == "rock" ||
+				computerSelectionUC == "scissor" && playerSelectionUC == "paper")
+			{
+				return  "You lose, " + computerSelection + " beats " + playerSelection + ".";
+			}
+		}
+		playerChoice = computerPlay()
+		computerChoice = computerPlay()
+		console.log(playerChoice, computerChoice, playRound(playerChoice, computerChoice));
 	</script>
 </body>
 </html>
