@@ -27,30 +27,88 @@
 
 		}
 		function playRound(playerSelection, computerSelection){
-			playerSelectionUC = playerSelection.toLowerCase()
-			computerSelectionUC = computerSelection.toLowerCase()
+			let playerSelectionUC = playerSelection.toLowerCase()
+			let computerSelectionUC = computerSelection.toLowerCase()
 			if(playerSelectionUC == "rock" && computerSelectionUC == "rock" || 
 				playerSelectionUC == "paper" && computerSelectionUC == "paper" ||
 				 playerSelectionUC == "scissor" && computerSelectionUC == "scissor")
 			{
-				return "It's a draw, the computer and you both had " + playerSelection + ".";
+				return "draw";
 			}
 			else if(computerSelectionUC == "rock" && playerSelectionUC == "paper" || 
 				computerSelectionUC == "paper" && playerSelectionUC == "scissor" || 
 				computerSelectionUC == "scissor" && playerSelectionUC == "rock")
 			{
-				return  "You win, " + playerSelection + " beats " + computerSelection + ".";
+				return  "player"
 			}
 			else if(computerSelectionUC == "rock" && playerSelectionUC == "scissor" || 
 				computerSelectionUC == "paper" && playerSelectionUC == "rock" ||
 				computerSelectionUC == "scissor" && playerSelectionUC == "paper")
 			{
-				return  "You lose, " + computerSelection + " beats " + playerSelection + ".";
+				return  "computer";
 			}
 		}
-		playerChoice = computerPlay()
-		computerChoice = computerPlay()
-		console.log(playerChoice, computerChoice, playRound(playerChoice, computerChoice));
+
+		function askMove(){
+			let move = prompt("Rock, Paper or scissor?");
+			return move;
+		}
+		function isLegit(move){
+			if(!move){
+				return false;
+			}
+			moveUC = move.toLowerCase();
+			if(moveUC == "rock" || moveUC == "paper" || moveUC == "scissor"){
+				return true;
+			}
+			return false;
+		}
+
+		function game(pointsToWin = 3){
+			let playerPoints = 0, computerPoints = 0;
+			console.log("Game on!")
+			while(true){
+				let playerMove = askMove();
+				if(isLegit(playerMove)){
+					computerMove = computerPlay();
+					winner = playRound(playerMove, computerMove);
+					switch(winner){
+						case "player":
+							playerPoints++;
+							console.log("player wins!")
+							break;
+						case "computer":
+							computerPoints++;
+							console.log("computer Wins!");
+							break;
+						case "draw":
+							console.log("It's a draw!");
+							break;
+						default:
+							console.log("something went wrong");
+							break;
+					}
+					if(playerPoints >= pointsToWin){
+						return "player";
+					}else if(computerPoints >= pointsToWin){
+						return "computer";
+					}
+					console.log(playerPoints, computerPoints)
+				}
+			}
+		}
+		let final_winner = game();
+		switch(final_winner){
+			case "player":
+				console.log("The players wins the game!!!!");
+				break;
+			case "computer":
+				console.log("The computer wins the game!!!!!1");
+				break;
+			default:
+				console.log("default, something went wrong!");
+				break;
+		}
 	</script>
 </body>
 </html>
